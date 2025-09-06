@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mainMenu>
+
+  <menuBar>
+
+    <subMenu id="python_scripts">
+    <label>Python Scripts</label>
+      
+      <subMenu id="ls_tools">
+      <label>LS Tools</label>
+      
+      <insertBefore/>
+        <titleItem>
+           <label>Geo Scripts</label>
+        </titleItem>
+
+        <scriptItem id="h.batch_import">
+        <label>Batch Import</label>
+        <scriptCode>
+        <![CDATA[
+from tools import ls_tools
+ls_tools.batch_import()
+        ]]>
+        </scriptCode>
+        </scriptItem>
+
+        <scriptItem id="h.split_geo">
+        <label>Split Geo</label>
+        <scriptCode>
+        <![CDATA[
+from tools import ls_tools
+ls_tools.split_geo()
+        ]]>
+        </scriptCode>
+        </scriptItem>
+
+      </subMenu>
+
+    </subMenu>
+
+  </menuBar>
+
+</mainMenu>

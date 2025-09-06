@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<menuDocument>
+
+  <menu>
+
+    <subMenu id="python_scripts">
+    <label>Python Scripts</label>
+      
+      <subMenu id="ls_tools">
+      <label>LS Tools</label>
+      
+      <insertBefore/>
+        <titleItem>
+           <label>Geo Scripts</label>
+        </titleItem>
+
+        <scriptItem id="h.split_geo">
+        <label>Split Geo</label>
+        <expression>
+        <![CDATA[
+node = kwargs.get("node", None)
+check_node = node.type().category().name()
+
+if check_node == "Sop":
+  return True
+else:
+  return False
+
+        ]]>
+        </expression>
+        <scriptCode>
+        <![CDATA[
+from tools import ls_tools
+ls_tools.split_geo()
+        ]]>
+        </scriptCode>
+        </scriptItem>
+
+      </subMenu>
+
+    </subMenu>
+
+  </menu>
+
+</menuDocument>

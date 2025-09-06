@@ -1,0 +1,19 @@
+import hou
+import os
+
+from modules import ls_misc_utils
+from tools import ls_lops_asset_builder as lab
+
+def dropAccept(file_list):
+    # Quick import for Houdini files
+    extensions = [".hip", ".hiplc"]
+    if len(file_list) == 1 and os.path.splitext(file_list[0])[1] in extensions:
+        hou.hipFile.merge(file_list[0])
+
+    is_solaris_active = ls_misc_utils._is_in_solaris()
+
+    if is_solaris_active:
+        lab.create_component_builder(file_list[0])
+
+
+    return True

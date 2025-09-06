@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="ls_tools" label="LS Tools">
+    <memberTool name="reload_modules"/>
+    <memberTool name="batch_import"/>
+    <memberTool name="split_geo"/>
+    <memberTool name="create_project"/>
+    <memberTool name="project_manager"/>
+    <memberTool name="cache_manager_bis"/>
+    <memberTool name="cache_manager"/>
+    <memberTool name="material_maker_bis"/>
+    <memberTool name="material_maker"/>
+    <memberTool name="place_highlight"/>
+    <memberTool name="create_asset_builder"/>
+    <memberTool name="asset_builder_bis"/>
+    <memberTool name="tp_light_rig"/>
+    <memberTool name="lops_camera_rig"/>
+  </toolshelf>
+
+  <tool name="reload_modules" label="Reload Modules" icon="W:/My Drive/Python_tools/toolbar/icon/sync.png">
+    <helpText><![CDATA["""Reload the package and the associated functions. Combined with the Alt key to only reload the package and functions present in the memory"""]]></helpText>
+    <script scriptType="python"><![CDATA[import ls_utils
+
+ls_utils.reload_package(kwargs)]]></script>
+  </tool>
+
+  <tool name="batch_import" label="Batch Import" icon="W:/My Drive/Python_tools/toolbar/icon/batch-processing.png">
+    <helpText><![CDATA["""Batch import of geometry files. The user is requested to choose between multiple source unit to scale the object correctly at import. This tool can also be called through the TAB Menu in the Network Context or through the Main Menu under the Python Scripts sub-section """]]></helpText>
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Python Scripts/LS Tools</toolSubmenu>
+    <script scriptType="python"><![CDATA[from tools import ls_tools
+
+ls_tools.batch_import()]]></script>
+  </tool>
+
+  <tool name="split_geo" label="Split Geo" icon="W:/My Drive/Python_tools/toolbar/icon/split.png">
+    <helpText><![CDATA["""Split the selected geometry based on specified attribute. The user is requested to choose between point and primitive attribute. This tool can also be called through the TAB Menu in the Network Context or through the Main Menu under the Python Scripts sub-section """]]></helpText>
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>Python Scripts/LS Tools</toolSubmenu>
+    <script scriptType="python"><![CDATA[from tools import ls_tools
+
+ls_tools.split_geo()]]></script>
+  </tool>
+
+  <tool name="create_project" label="Create Project" icon="W:/My Drive/Python_tools/toolbar/icon/database-add.png">
+    <script scriptType="python"><![CDATA[from tools import ls_tools
+
+ls_tools.create_project()]]></script>
+  </tool>
+
+  <tool name="project_manager" label="Project Manager" icon="W:/My Drive/Python_tools/toolbar/icon/manager.png">
+    <script scriptType="python"><![CDATA[from pipeline import ls_project_manager
+
+win = ls_project_manager.ProjectManager()
+win.show()]]></script>
+  </tool>
+
+  <tool name="place_highlight" label="Place Highlight" icon="W:/My Drive/Python_tools/toolbar/icon/specular-reflection.png">
+    <script scriptType="python"><![CDATA[scene_viewer = hou.ui.paneTabOfType(hou.paneTabType.SceneViewer)
+scene_viewer.setCurrentState("_place_light")
+]]></script>
+  </tool>
+
+  <tool name="tp_light_rig" label="LOPS Light Rig" icon="W:/My Drive/Python_tools/toolbar/icon/spotlight.png">
+    <script scriptType="python"><![CDATA[from tools import ls_lops_light_rig as llr
+
+llr.create_light_rig()]]></script>
+  </tool>
+
+  <tool name="lops_camera_rig" label="LOPS Cam Rig" icon="W:/My Drive/Python_tools/toolbar/icon/camera.png">
+    <script scriptType="python"><![CDATA[from tools import ls_lops_create_lookdev_camera as llc
+
+llc.create_lookdev_camera_node()]]></script>
+  </tool>
+
+  <tool name="asset_builder_bis" label="Asset Builder" icon="W:/My Drive/Python_tools/toolbar/icon/builder.png">
+    <script scriptType="python"><![CDATA[from tools import ls_lops_create_asset_builder
+
+win = ls_lops_create_asset_builder.CreateAssetBuilder()
+win.show()]]></script>
+  </tool>
+
+  <tool name="material_maker_bis" label="Material Maker" icon="W:/My Drive/Python_tools/toolbar/icon/color-palette.png">
+    <script scriptType="python"><![CDATA[from tools import ls_tex_to_mtlx
+
+win = ls_tex_to_mtlx.TxToMtlx()
+win.show()]]></script>
+  </tool>
+
+  <tool name="cache_manager_bis" label="Cache Manager" icon="W:/My Drive/Python_tools/toolbar/icon/cache.png">
+    <script scriptType="python"><![CDATA[from pipeline import ls_cache_manager
+
+win = ls_cache_manager.CacheManager()
+win.show()]]></script>
+  </tool>
+</shelfDocument>
