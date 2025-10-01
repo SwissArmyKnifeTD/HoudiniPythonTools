@@ -11,9 +11,7 @@
     <memberTool name="split_geo"/>
     <memberTool name="create_project"/>
     <memberTool name="project_manager"/>
-    <memberTool name="cache_manager_bis"/>
     <memberTool name="cache_manager"/>
-    <memberTool name="material_maker_bis"/>
     <memberTool name="material_maker"/>
     <memberTool name="place_highlight"/>
     <memberTool name="create_asset_builder"/>
@@ -91,17 +89,17 @@ win = ls_lops_create_asset_builder.CreateAssetBuilder()
 win.show()]]></script>
   </tool>
 
-  <tool name="material_maker_bis" label="Material Maker" icon="W:/My Drive/Python_tools/toolbar/icon/color-palette.png">
-    <script scriptType="python"><![CDATA[from tools import ls_tex_to_mtlx
-
-win = ls_tex_to_mtlx.TxToMtlx()
-win.show()]]></script>
-  </tool>
-
-  <tool name="cache_manager_bis" label="Cache Manager" icon="W:/My Drive/Python_tools/toolbar/icon/cache.png">
+  <tool name="cache_manager" label="Cache Manager" icon="W:/My Drive/Python_tools/toolbar/icon/cache.png">
     <script scriptType="python"><![CDATA[from pipeline import ls_cache_manager
 
 win = ls_cache_manager.CacheManager()
+win.show()]]></script>
+  </tool>
+
+  <tool name="material_maker" label="Material Maker" icon="W:/My Drive/Python_tools/toolbar/icon/color-palette.png">
+    <script scriptType="python"><![CDATA[from tools import ls_tex_to_mtlx
+
+win = ls_tex_to_mtlx.TxToMtlx()
 win.show()]]></script>
   </tool>
 </shelfDocument>
