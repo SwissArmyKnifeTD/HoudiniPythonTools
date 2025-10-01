@@ -129,33 +129,12 @@ class CreateProject(QtWidgets.QMainWindow):
         self.project_framerate_label.setEnabled(False)
         self.default_folders_label.setEnabled(False)
 
-        self.chkb_geo.setEnabled(False)
-        self.led_geo.setEnabled(False)
-        self.chkb_hda.setEnabled(False)
-        self.led_hda.setEnabled(False)
-        self.chkb_sim.setEnabled(False)
-        self.led_sim.setEnabled(False)
-        self.chkb_abc.setEnabled(False)
-        self.led_abc.setEnabled(False)
-        self.chkb_tex.setEnabled(False)
-        self.led_tex.setEnabled(False)
-        self.chkb_render.setEnabled(False)
-        self.led_render.setEnabled(False)
-        self.chkb_flip.setEnabled(False)
-        self.led_flip.setEnabled(False)
-        self.chkb_scripts.setEnabled(False)
-        self.led_scripts.setEnabled(False)
-        self.chkb_comp.setEnabled(False)
-        self.led_comp.setEnabled(False)
-        self.chkb_audio.setEnabled(False)
-        self.led_audio.setEnabled(False)
-        self.chkb_videos.setEnabled(False)
-        self.led_videos.setEnabled(False)
-        self.chkb_desk.setEnabled(False)
-        self.led_desk.setEnabled(False)
-        self.chkb_custom_folders.setEnabled(False)
-        self.custom_folders.setEnabled(False)
-        self.create_proj.setEnabled(False)
+        for input_fields in [self.chkb_geo, self.led_geo, self.chkb_hda, self.led_hda, self.chkb_sim, self.led_sim, self.chkb_abc,
+        self.led_abc, self.chkb_tex, self.led_tex, self.chkb_render, self.led_render, self.chkb_flip, self.led_flip,
+        self.chkb_scripts, self.led_scripts, self.chkb_comp, self.led_comp, self.chkb_audio, self.led_audio,
+        self.chkb_videos, self.led_videos, self.chkb_desk, self.led_desk, self.chkb_custom_folders,
+        self.custom_folders, self.create_proj]:
+            input_fields.setEnabled(False)
         
         # CONNECTIONS
         self.select_dir.clicked.connect(self.select_directory)
@@ -222,13 +201,12 @@ class CreateProject(QtWidgets.QMainWindow):
             lists : (project_name, project_data) or (None, None) if no selection
         """
 
+        project_names = []
+        project_codes = []
         # Open the json and loop through names and codes to output two lists
         try:
             with open(self.json_path, "r") as file :
                 self.projects_data = json.load(file)
-            
-            project_names = []
-            project_codes = []
 
             for project in self.projects_data:
                 project_name = list(project.keys())[0]
@@ -301,6 +279,7 @@ class CreateProject(QtWidgets.QMainWindow):
                 self.project_console.setText("Project and Code already exist")
             elif project_validity == False:
                 self.project_console.setText("Project already exists")
+                self.input_state = False
             elif code_validity == False:
                 self.project_console.setText("Code already exists")
                 self.input_state = False
